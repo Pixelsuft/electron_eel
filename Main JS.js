@@ -1,12 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 
-
-if (require('electron-squirrel-startup')) {
-	app.quit();
-}
-
 let mainWindow;
-const createWindow = () => {
+const createWindow = function(){
 	mainWindow = new BrowserWindow({
 		width: 1024,
 		height: 768,
@@ -18,18 +13,15 @@ const createWindow = () => {
 	mainWindow.loadURL('http://localhost:1337/');
 };
 
-
 app.on('ready', function(){
 	createWindow();
 });
 
-
-app.on('window-all-closed', () => {
+app.on('window-all-closed', function(){
 	app.quit();
 });
 
-
-app.on('activate', () => {
+app.on('activate', function(){
 	if (BrowserWindow.getAllWindows().length === 0) {
 		createWindow();
 	}
